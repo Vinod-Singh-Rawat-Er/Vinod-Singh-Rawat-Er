@@ -698,3 +698,18 @@ span {
         margin: 3rem 0;
     }
 }
+
+.contact-info {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.contact-info a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
