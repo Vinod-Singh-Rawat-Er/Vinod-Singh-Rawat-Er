@@ -3,6 +3,13 @@
 let menuIcon = document.querySelector('#menu-icons');
 let navbar = document.querySelector('.nav');
 
+// Set current year dynamically
+document.addEventListener("DOMContentLoaded", () => {
+  const year = new Date().getFullYear();
+  document.getElementById("year").textContent = year;
+});
+
+
 menuIcon.onclick =() => {
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
@@ -40,3 +47,34 @@ window.onscroll = () => {
         header.classList.remove("sticky");
       }
 }
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    subject: form.subject.value,
+    message: form.message.value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbwF9oUs5YOMLCLWLk1pa464uECbFZSXJAP0a6ZOEaqq--TYqVlFUKhovfHIU8UM3Umn/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(result => {
+    alert("Message sent successfully!");
+    form.reset();
+  })
+  .catch(error => {
+    alert("There was an error sending your message.");
+    console.error("Error:", error);
+  });
+});
